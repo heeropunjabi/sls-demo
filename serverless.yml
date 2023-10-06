@@ -4,11 +4,20 @@ frameworkVersion: '3'
 provider:
   name: aws
   runtime: nodejs18.x
-
+  region: us-west-2
+  
 functions:
   api:
     handler: index.handler
+    timeout: 600
+    
     events:
       - httpApi: '*'
+    environment:
+      DEBUGGER_ACTIVE: 'true'
+      DEBUGGER_BROKER_ADDRESS: ''
+      DEBUGGER_FUNCTION_ID: 'apidebug'
+
+      
 plugins:
   - serverless-offline
